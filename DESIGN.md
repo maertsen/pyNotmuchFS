@@ -38,6 +38,14 @@ Solutions to common operations
   - Adding a tag to a message is achieved by moving it to a subdirectory of the top level tag folder.
   - Removing a tag from a messages is achieved by moving it to a subdirectory of the top level untag folder.
 
+Differences between pyNotmuchFS and notmuchfs
+---------------------------------------------
+
+  - queries are defined using files, instead of directories
+  - pyNotmuchFS is primarily targetted towards remote access/IMAP, while notmuchfs originally targetted mutt
+  - notmuchfs is written in C, while pyNotmuchFS will be written in Python.
+  - (list not exhaustive)
+
 List of deferred design decisions
 ---------------------------------
 
