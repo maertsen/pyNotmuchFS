@@ -12,7 +12,7 @@ A pyNotmuchFS is mounted on a directory (hereafter: `pyNotmuchFS directory`), wi
 
 ### Backing directory
 
-The backing directory contains symlinks which define the directories and their contents found in a mounted pyNotmuchFS  directory.
+The backing directory contains files which define the directories (file name) and their contents (file content, as notmuch query) found in a mounted pyNotmuchFS directory.
 
 ### Mail directory
 
@@ -22,7 +22,7 @@ A Notmuch-compatible mail directory, containing your actual e-mail and the `.not
 
 The top level of a (mounted) pyNotmuchFS consists of directories. Two types of directories exist: search directories and tag directories. pyNotmuchFS uses the Maildir++ directory layout, with subdirectories supported by use of a `.` in the name.
 
-Each search directory corresponds to a single symlink in the backing directory. The contents of each search directory are determined by its associated query, defined by the (final) symlink target in the backing directory.
+Each search directory corresponds to a single file in the backing directory. The contents of each search directory are determined by its associated query, defined by the content of the file in the backing directory.
 
 There are two top-level tagging directories: tag and untag. Each of these directories contains directories corresponding to the full list of tags used in the Notmuch database.
 
@@ -31,7 +31,7 @@ Solutions to common operations
 
 ### Searching
 
-  - Searching is possible by creating a symlink in the backing directory with a valid Notmuch query as its target. Listing the contents of this folder in a mounted pyNotmuchFS directory returns the query results as a Maildir.
+  - Searching is possible by creating a file in the backing directory containing a valid Notmuch query as its content. Listing the contents of the folder corresponding to this file in a mounted pyNotmuchFS directory returns the query results as a Maildir.
 
 ### Tagging
 
@@ -44,4 +44,5 @@ List of deferred design decisions
   - do we support a query corresponding to the top level pyNotmuchFS directory (e.g. by using special name INBOX)?
   - do we support directory creation under tag to support the creation of new tags?
   - which (subset of?) files do we allow in the backing directory for passthrough through pyNotmuchFS? This mostly involves auxiliary files 
+  - do we support creation or alteration of queries (and their respective files) over IMAP (and if so, how?)
   - (your idea here?)
